@@ -29,8 +29,25 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
+
+const int wheelsXJoystick = 1;
+const int wheelsYJoystick = 2;
+const int armYJoystick = 3;
+
+const int armChannel = 9;
+const int leftWheelsChannel = 3;
+const int rightWheelsChannel = 4;
+
+
 void operatorControl() {
+	int power;
+	int turn;
 	while (1) {
+		power = joystickGetAnalog(1, wheelsXJoystick); // y axis on right joystick
+		turn = joystickGetAnalog(1, wheelsYJoystick); // x axis on right joystick
+		chassisSet(power + turn, power - turn); //set wheel motor speeds
+
+		armSet(joystickGetAnalog(1, armYJoystick));
 		delay(20);
 	}
 }
