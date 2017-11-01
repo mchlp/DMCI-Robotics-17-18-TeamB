@@ -1,3 +1,6 @@
 2017/10/31
 - Added code for wheel motor control by joystick
 - Added code for arm motor control by joystick
+ c
+2017/11/01
+- Added code for claw motor contorl by joystick
