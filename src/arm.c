@@ -2,5 +2,6 @@
 #include "arm.h"
 
 void armSet(int speed) {
-  motorSet(armChannel, speed);
+  motorSet(MOTOR_ARM_LEFT, speed);
+  motorSet(MOTOR_ARM_RIGHT, speed);
 }

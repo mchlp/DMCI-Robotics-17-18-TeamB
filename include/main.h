@@ -26,6 +26,7 @@
 #define MAIN_H_
 
 #include <API.h>
+#include "const.h" //include constants file
 #include "chassis.h" //include chassis header file
 #include "arm.h" //include arm header file
 #include "claw.h" //include claw header file

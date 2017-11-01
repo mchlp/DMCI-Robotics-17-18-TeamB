@@ -2,5 +2,5 @@
 #include "claw.h"
 
 void clawSet(int speed) {
-  motorSet(clawChannel, speed);
+  motorSet(MOTOR_CLAW, speed);
 }

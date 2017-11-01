@@ -30,18 +30,7 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 
-//inputs from joystick
-const int wheelsXJoystick = 1; // y axis on right joystick
-const int wheelsYJoystick = 2; // x axis on right joystick
-const int armYJoystick = 3; // y axis on left joystick
-const int clawJoystick = 4; // x axis on the left joystick
-
-//channels for motors
-const int armChannel = 9;
-const int clawChannel = 10;
-const int leftWheelsChannel = 3;
-const int rightWheelsChannel = 4;
-
+void autonomous();
 
 void operatorControl() {
 	int power;
@@ -50,14 +39,13 @@ void operatorControl() {
 	int clawMotion;
 
 	while (1) {
-		power = joystickGetAnalog(1, wheelsXJoystick);
-		turn = joystickGetAnalog(1, wheelsYJoystick);
-		armRotate = joystickGetAnalog(1, armYJoystick);
-		clawMotion = joystickGetAnalog(1, clawJoystick);
+		power = joystickGetAnalog(1, JOYSTICK_WHEELS_VERTICAL);
+		turn = joystickGetAnalog(1, JOYSTICK_WHEELS_HORIZONTAL);
+		armRotate = joystickGetAnalog(1, JOYSTICK_ARM);
+		clawMotion = joystickGetAnalog(1, JOYSTICK_CLAW);
 		chassisSet(power + turn, power - turn); //set wheel motor speeds
 		armSet(armRotate); //set arm rotation speed
 		clawSet(clawMotion); //set claw motion speed
-		armSet(joystickGetAnalog(1, armYJoystick));
 		delay(20);
 	}
 }
