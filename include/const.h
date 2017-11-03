@@ -9,8 +9,9 @@
 #define JOYSTICK_CLAW 4 // x axis on the left joystick
 
 //channels for motors
-#define MOTOR_ARM_LEFT 2
-#define MOTOR_ARM_RIGHT 3
+//#define MOTOR_ARM_LEFT 2
+//#define MOTOR_ARM_RIGHT 3
+#define MOTOR_ARM 2
 #define MOTOR_CLAW 8
 #define MOTOR_LEFT_WHEEL_FRONT 4
 #define MOTOR_LEFT_WHEEL_BACK 5
