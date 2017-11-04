@@ -37,10 +37,10 @@ void operatorControl() {
 	int clawMotion;
 
 	while (1) {
-		power = joystickGetAnalog(1, JOYSTICK_WHEELS_VERTICAL);
-		turn = joystickGetAnalog(1, JOYSTICK_WHEELS_HORIZONTAL);
-		armRotate = joystickGetAnalog(1, JOYSTICK_ARM);
-		clawMotion = joystickGetAnalog(1, JOYSTICK_CLAW);
+		power = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_WHEELS_VERTICAL);
+		turn = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_WHEELS_HORIZONTAL);
+		armRotate = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_ARM);
+		clawMotion = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_CLAW);
 		chassisSet(power + turn, power - turn); //set wheel motor speeds
 		armSet(armRotate); //set arm rotation speed
 		clawSet(clawMotion); //set claw motion speed
