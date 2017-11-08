@@ -31,19 +31,30 @@
  */
 
 void operatorControl() {
-	int power;
-	int turn;
-	int armRotate;
-	int clawMotion;
+	int power, turn, armRotate;
+	bool clawOpen, clawClose, mobileGoalOpen, mobileGoalClose;
 
 	while (1) {
 		power = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_WHEELS_VERTICAL);
 		turn = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_WHEELS_HORIZONTAL);
 		armRotate = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_ARM);
-		clawMotion = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_CLAW);
+		clawOpen = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_CLAW, JOY_UP);
+		clawClose = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_CLAW, JOY_DOWN);
+		mobileGoalOpen = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_MOBILE_GOAL_LIFT, JOY_UP);
+		mobileGoalClose = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_MOBILE_GOAL_LIFT, JOY_DOWN);
+		//clawMotion = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_CLAW);
 		chassisSet(power + turn, power - turn); //set wheel motor speeds
 		armSet(armRotate); //set arm rotation speed
-		clawSet(clawMotion); //set claw motion speed
+		if (clawOpen) {
+			clawSet(MAX_FORWARD_SPEED);
+		} else if (clawClose) {
+			clawSet(MAX_REVERSE_SPEED);
+		}
+		if (mobileGoalOpen) {
+			mobileGoalSet(MAX_FORWARD_SPEED);
+		} else if (mobileGoalClose) {
+			mobileGoalSet(MAX_REVERSE_SPEED);
+		}
 		delay(20);
 	}
 }
