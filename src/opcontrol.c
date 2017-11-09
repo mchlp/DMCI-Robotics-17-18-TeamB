@@ -45,10 +45,15 @@ void operatorControl() {
 		//clawMotion = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_CLAW);
 		chassisSet(power + turn, power - turn); //set wheel motor speeds
 		armSet(armRotate); //set arm rotation speed
+		printf("%d - %d\n", clawOpen, clawClose);
 		if (clawOpen) {
-			clawSet(MAX_FORWARD_SPEED);
+			motorSet(9, MAX_FORWARD_SPEED);
+			//clawSet(MAX_FORWARD_SPEED);W
 		} else if (clawClose) {
-			clawSet(MAX_REVERSE_SPEED);
+			//clawSet(MAX_REVERSE_SPEED);
+			motorSet(9, MAX_REVERSE_SPEED);
+		} else {
+			motorSet(9, 0);
 		}
 		if (mobileGoalOpen) {
 			mobileGoalSet(MAX_FORWARD_SPEED);
