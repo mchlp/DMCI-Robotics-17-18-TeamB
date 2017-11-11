@@ -31,8 +31,9 @@
  */
 
 void operatorControl() {
+	extern double speedMod;
 	int power, turn, armRotate;
-	bool clawOpen, clawClose, mobileGoalOpen, mobileGoalClose;
+	bool clawOpen, clawClose, mobileGoalOpen, mobileGoalClose, perciseModeOn, perciseModeOff;
 
 	while (1) {
 		power = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_WHEELS_VERTICAL);
@@ -42,24 +43,37 @@ void operatorControl() {
 		clawClose = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_CLAW, JOY_DOWN);
 		mobileGoalOpen = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_MOBILE_GOAL_LIFT, JOY_UP);
 		mobileGoalClose = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_MOBILE_GOAL_LIFT, JOY_DOWN);
+		perciseModeOn = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_MODE, JOY_RIGHT);
+		perciseModeOff = joystickGetDigital(CONTROLLER_PRIMARY, JOYSTICK_MODE, JOY_LEFT);
 		//clawMotion = joystickGetAnalog(CONTROLLER_PRIMARY, JOYSTICK_CLAW);
-		chassisSet(power + turn, power - turn); //set wheel motor speeds
-		armSet(armRotate); //set arm rotation speed
-		printf("%d - %d\n", clawOpen, clawClose);
+		chassisSet((power + turn) * speedMod, (power - turn)*speedMod); //set wheel motor speeds
+		armSet(armRotate * speedMod); //set arm rotation speed
+
+		if (perciseModeOn) {
+			setPerciseMode(true);
+		}
+		if (perciseModeOff) {
+			setPerciseMode(false);
+		}
+		
+		//claw
 		if (clawOpen) {
-			motorSet(9, MAX_FORWARD_SPEED);
-			//clawSet(MAX_FORWARD_SPEED);W
+			clawSet(MAX_SPEED);
 		} else if (clawClose) {
-			//clawSet(MAX_REVERSE_SPEED);
-			motorSet(9, MAX_REVERSE_SPEED);
+			clawSet(-MAX_SPEED);
 		} else {
-			motorSet(9, 0);
+			clawSet(0);
 		}
+
+		//mobile goal
 		if (mobileGoalOpen) {
-			mobileGoalSet(MAX_FORWARD_SPEED);
+			mobileGoalSet(MAX_SPEED);
 		} else if (mobileGoalClose) {
-			mobileGoalSet(MAX_REVERSE_SPEED);
+			mobileGoalSet(-MAX_SPEED);
+		} else {
+			mobileGoalSet(0);
 		}
+
 		delay(20);
 	}
 }

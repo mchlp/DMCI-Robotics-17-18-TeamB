@@ -30,7 +30,8 @@
 #include "chassis.h" //include chassis header file
 #include "arm.h" //include arm header file
 #include "claw.h" //include claw header file
-#include "mobileGoal.h" //include mobile goal file
+#include "mobileGoal.h" //include mobile goal header file
+#include "mode.h" //include mode header file
 
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus
