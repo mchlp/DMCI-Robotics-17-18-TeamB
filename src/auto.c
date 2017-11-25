@@ -24,6 +24,7 @@ static struct motor_drive mot_drive = {
 static double feedback_null[8];
 
 void autonomous() {
+
 	unsigned long wakeupTime = millis();
 
 	// Extend mobile goal

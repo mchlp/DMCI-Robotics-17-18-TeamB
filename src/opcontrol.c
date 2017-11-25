@@ -26,8 +26,10 @@ void operatorControl() {
 	double mult = 1;
 
 	while (1) {
-		double joya_fb = get_joy_map(1, 2);
-		double joya_lr = get_joy_map(1, 4);
+
+		// change this
+		double joya_fb = get_joy_map(1, 3);
+		double joya_lr = get_joy_map(1, 1);
 		double joya_mob = get_joy_ud(1, 5);
 
 		double joyd_change_mode = get_joy_lr(1, 8);
