@@ -26,12 +26,9 @@
 #define MAIN_H_
 
 #include <API.h>
-#include "const.h" //include constants file
-#include "chassis.h" //include chassis header file
-#include "arm.h" //include arm header file
-#include "claw.h" //include claw header file
-#include "mobileGoal.h" //include mobile goal header file
-#include "mode.h" //include mode header file
+#include <util.h>
+
+int nIME;
 
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus

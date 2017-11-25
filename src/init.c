@@ -21,6 +21,8 @@
  * configure a UART port (usartOpen()) but cannot set up an LCD (lcdInit()).
  */
 void initializeIO() {
+	watchdogInit();
+//	pinMode(1, INPUT);
 }
 
 /*
@@ -37,4 +39,5 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
+	nIME = imeInitializeAll();
 }
