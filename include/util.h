@@ -1,7 +1,9 @@
 #ifndef util_c
 #define util_c
 
-#define GROUP_PID(x) x, sizeof(x) / sizeof(struct motor_pid) 
+#include <main.h>
+
+#define GROUP_PID(x) x, sizeof(x) / sizeof(struct motor_pid)
 
 #include <inttypes.h>
 
@@ -40,6 +42,7 @@ static inline double curve(double val) {
 		return -out;
 	return out;
 }
+
 
 static inline double clamp(double val, double min, double max) {
 	if(val < min)
